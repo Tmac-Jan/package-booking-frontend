@@ -1,38 +1,62 @@
 <template>
-  <Card class="mainContainer" style="width:320px">
-    <div style="text-align:center">
-      <input v-model="orderNumber"></input>
-      <input v-model="customerName"></input>
-      <input v-model="customerPhone"></input>
-      <input v-model="status"></input>
-      <input v-model="appointTime" placeholder="YYYY-MM-DD"></input>
-      <input v-model="weights"></input>
-      <Button @click="addParcel"></Button>
-    </div>
-  </Card>
+  <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
+    <FormItem label="orderNumber" prop="orderNumber">
+      <Input v-model="formValidate.orderNumber" placeholder="Enter your name"></Input>
+    </FormItem>
+    <FormItem label="customerName" prop="customerName">
+      <Input v-model="formValidate.customerName" placeholder="Enter your name"></Input>
+    </FormItem>
+    <FormItem label="customerPhone" prop="customerPhone">
+      <Input v-model="formValidate.customerPhone" placeholder="Enter your name"></Input>
+    </FormItem>
+    <FormItem label="weight" prop="weight">
+      <Input v-model="formValidate.weight" placeholder="Enter your name"></Input>
+    </FormItem>
+    <FormItem>
+      <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
+      <Button @click="handleReset('formValidate')" style="margin-left: 8px">Reset</Button>
+    </FormItem>
+  </Form>
 </template>
 <script>
   export default {
-    data() {
+    data () {
       return {
-        orderNumber: '',
-        customerName: '',
-        customerPhone: '',
-        status: '',
-        appointTime: '',
-        weights: ''
+        formValidate: {
+          orderNumber: '',
+          customerName: '',
+          customerPhone: '',
+          weight: ''
+        },
+        ruleValidate: {
+          orderNumber: [
+            { required: true, message: 'The orderNumber cannot be empty', trigger: 'blur' }
+          ],
+          customerName: [
+            { required: true, message: 'The customerName cannot be empty', trigger: 'blur' }
+          ],
+          customerPhone: [
+            { required: true, message: 'The customerPhone cannot be empty', trigger: 'blur' }
+          ],
+          weight: [
+            { required: true, message: 'Please select gender', trigger: 'change' }
+          ]
+        }
+      }
+    },
+    methods: {
+      handleSubmit (name) {
+        this.$refs[name].validate((valid) => {
+          if (valid) {
+            this.$Message.success('Success!');
+          } else {
+            this.$Message.error('Fail!');
+          }
+        })
+      },
+      handleReset (name) {
+        this.$refs[name].resetFields();
       }
     }
   }
 </script>
-<style scoped>
-  .mainContainer {
-    margin: 0 auto;
-  }
-
-  .user-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-  }
-</style>
