@@ -11,7 +11,7 @@
       </template>
       <template slot-scope="{ row, index }" slot="action">
         <!--      <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">View</Button>-->
-        <Button type="primary" size="small" @click="confirmReceipt(index)">确认收货</Button>
+        <Button type="primary" size="small" v-show="row.status!=2" @click="confirmReceipt(index)">确认收货</Button>
       </template>
     </Table>
   </div>
