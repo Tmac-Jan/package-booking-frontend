@@ -1,0 +1,18 @@
+
+export const UPDATE_TODO_ITEMS = "UPDATE_TODO_ITEMS";
+
+export const ADD_TODO_ITEM = "ADD_TODO_ITEM";
+
+export const UPDATE_STATUS = "UPDATE_STATUS";
+
+export const SAVE_TODO_ITEMS = "SAVE_TODO_ITEMS";
+
+export const DELETE_TODO_ITEM = "DELETE_TODO_ITEM";
+
+export const SET_USER_NAME = "SET_USER_NAME";
+
+
+
+
+export const SAVE_PARCEL_ITEMS = "SAVE_PARCEL_ITEMS";
+export const ADD_PARCEL_ITEM = "ADD_PARCEL_ITEM";
