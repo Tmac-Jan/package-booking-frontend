@@ -12,4 +12,4 @@ export const updateParcelItem = (id, updateItem) => axios.put(`/parcels/${id}`, 
 
 export const getParcelsItems = () => axios.get("/parcels");
 
-export const addParcelsItem = parcelsItem => axios.post("/parcels", parcelsItem);
+export const addParcelItem = parcelsItem => axios.post("/parcels", parcelsItem);

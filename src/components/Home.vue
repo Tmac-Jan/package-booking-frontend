@@ -12,8 +12,8 @@
                 <Sider hide-trigger :style="{background: '#fff'}">
                     <Menu @on-select="MenuSelect" active-name="1-2" theme="light" width="auto" :open-names="['1']">
 
-                        <MenuItem name="ParcelBossItem">ParcelBossItem</MenuItem>
-                        <MenuItem name="ParcelAdd">ParcelAdd</MenuItem>
+                        <MenuItem name="ParcelBossItem">包裹列表</MenuItem>
+                        <MenuItem name="ParcelAdd">包裹入库</MenuItem>
                     </Menu>
                 </Sider>
                 <Layout :style="{padding: '0 24px 24px'}">

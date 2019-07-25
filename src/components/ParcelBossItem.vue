@@ -80,15 +80,15 @@ export default {
         return this.$store.state.parcelItemList
       } else if (this.tabType === 'NOTYET') {
         const a = this.$store.state.parcelItemList.filter((e) =>
-          e.status == 0)
+          e.status === 0)
         return a
       } else if (this.tabType === 'WAIT') {
         const a = this.$store.state.parcelItemList.filter((e) =>
-          e.status == 1)
+          e.status === 1)
         return a
       } else {
         const a = this.$store.state.parcelItemList.filter((e) =>
-          e.status == 2)
+          e.status === 2)
         return a
       }
     }
@@ -99,10 +99,10 @@ export default {
       this.tabType = value
     },
     confirmReceipt (index) {
-      let parcelItems = this.generateFilterList
-      let item = parcelItems[index]
-      item.status = 2
-      this.updateParcelItem(item)
+      let parcelItems = this.generateFilterList;
+      let item = parcelItems[index];
+      item.status = 2;
+      this.updateParcelItem(item);
     },
     generateStatus (status) {
       if (status === 0) {
