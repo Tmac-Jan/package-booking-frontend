@@ -6,6 +6,7 @@ import VueRouter from 'vue-router';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import ParcelBossItem from './components/ParcelBossItem'
+import ParcelAdd from './components/ParcelAdd'
 import Home from './components/Home'
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -26,13 +27,13 @@ const routes = [
         path: "/ParcelBossItem",
         component: ParcelBossItem,
         name:"ParcelBossItem"
-       }
-      // {
-      //   path: "/User",
-      //   component: User,
-      //   name:"User"
-      //
-      // }
+       },
+      {
+        path: "/ParcelAdd",
+        component: ParcelAdd,
+        name:"ParcelAdd"
+
+      }
     ]
   }
 ];

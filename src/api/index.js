@@ -4,7 +4,7 @@ import axios from "./config";
 //
 // export const addTodoItem = todoItem => axios.post("/todos", todoItem);
 //
-// export const updateTodoItem = (id, updateItem) => axios.put(`/todos/${id}`, updateItem);
+export const updateParcelItem = (id, updateItem) => axios.put(`/parcels/${id}`, updateItem);
 //
 // export const deleteTodoItem = id => axios.delete(`/todos/${id}`);
 

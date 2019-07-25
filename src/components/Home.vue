@@ -13,7 +13,7 @@
                     <Menu @on-select="MenuSelect" active-name="1-2" theme="light" width="auto" :open-names="['1']">
 
                         <MenuItem name="ParcelBossItem">ParcelBossItem</MenuItem>
-<!--                        <MenuItem name="User">addParsel</MenuItem>-->
+                        <MenuItem name="ParcelAdd">ParcelAdd</MenuItem>
                     </Menu>
                 </Sider>
                 <Layout :style="{padding: '0 24px 24px'}">
