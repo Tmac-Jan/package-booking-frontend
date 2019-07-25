@@ -39,17 +39,6 @@ export default {
         {
           title: '状态',
           key: 'status',
-          // render: (h, params) => {
-          //   if (params.row.status === 0) {
-          //     return '未取件'
-          //   } else if (params.row.status === 1) {
-          //     return '已预约'
-          //   } else if (params.row.status === 2) {
-          //     return '已取件'
-          //   } else {
-          //     return '无状态'
-          //   }
-          // }
           render: (h, params) => {
             return h('div', [
               h('span', this.generateStatus(params.row.status))
