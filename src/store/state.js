@@ -1,7 +1,6 @@
 const state = {
-    todoItemList: [],
-    parcelItemList:[],
-    userName:''
+  parcelItemList: [],
+  tabType: 'ALL'
 }
 
 export default state
