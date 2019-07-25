@@ -19,6 +19,7 @@
   </Form>
 </template>
 <script>
+  import {mapActions} from "vuex";
   export default {
     data () {
       return {
@@ -45,9 +46,11 @@
       }
     },
     methods: {
+      ...mapActions(["addParcelItem"]),
       handleSubmit (name) {
         this.$refs[name].validate((valid) => {
           if (valid) {
+            this.addParcelsItem(this.formValidate);
             this.$Message.success('Success!');
           } else {
             this.$Message.error('Fail!');
