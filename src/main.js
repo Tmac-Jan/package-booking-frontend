@@ -9,7 +9,7 @@ import ParcelBossItem from './components/ParcelBossItem'
 import ParcelAdd from './components/ParcelAdd'
 import ParcelAppoint from './components/ParcelAppoint'
 import Home from './components/Home'
-
+import Main from './views/Main'
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -18,7 +18,7 @@ const routes = [
   {
     path: "/",
     component: Home,
-    name: "Home",
+    name: "Main",
     children: [
       {
         path: "",

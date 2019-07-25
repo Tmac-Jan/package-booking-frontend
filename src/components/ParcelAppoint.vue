@@ -8,7 +8,7 @@
          <row>
            <Col span="12">
              <DatePicker type="datetime" :options="options1" format="yyyy-MM-dd HH:mm:ss"
-                         placeholder="Select date" style="width: 200px" :model="formValidate.appointTime">
+                         @on-change="handleDateTime" placeholder="Select date" style="width: 200px" :value="formValidate.appointTime">
              </DatePicker>
            </Col>
          </row>
@@ -69,15 +69,20 @@ import {updateParcelItemWithoutId } from '../api'
             {required: true, message: '订单编号 不能为空', trigger: 'blur'}
           ],
           appointTime: [
-            { required: true, type: 'datetime', message: 'Please select the date', trigger: 'change' }
+            // { required: true, type: 'datetime', message: 'Please select the date', trigger: 'change' }
+            {"message": "不能为空","required": 1},
+            {"pattern": null,"type": "string","message": null}
           ],
 
         }
       }
     },
     methods: {
-      handleSubmit(name) {
-        var self = this
+      handleDateTime(datetime){
+        this.formValidate.appointTime=datetime
+      },
+    handleSubmit(name) {
+        var self = this;
         this.$refs[name].validate(async function (valid) {
           if (valid) {
             await updateParcelItemWithoutId(self.formValidate)
