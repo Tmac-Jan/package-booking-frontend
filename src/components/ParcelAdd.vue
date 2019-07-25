@@ -5,8 +5,9 @@
       <input v-model="customerName"></input>
       <input v-model="customerPhone"></input>
       <input v-model="status"></input>
-      <input v-model="appointTime"></input>
+      <input v-model="appointTime" placeholder="YYYY-MM-DD"></input>
       <input v-model="weights"></input>
+      <Button @click="addParcel"></Button>
     </div>
   </Card>
 </template>
