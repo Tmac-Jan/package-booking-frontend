@@ -1,19 +1,14 @@
 <template>
     <div class="layout">
         <Layout class="layout-child">
-            <Header>
-                <Button type="primary" class="left-btn" @click="goBack">Back</Button>
-                <div class="user-div">
-                    <Avatar class="user-img" size="large" src="https://i.loli.net/2017/08/21/599a521472424.jpg"/>
-                    <span class="userName-span">{{$store.state.userName}}</span>
-                </div>
-            </Header>
+         <Header></Header>
             <Layout>
                 <Sider hide-trigger :style="{background: '#fff'}">
                     <Menu @on-select="MenuSelect" active-name="1-2" theme="light" width="auto" :open-names="['1']">
 
                         <MenuItem name="ParcelBossItem">包裹列表</MenuItem>
                         <MenuItem name="ParcelAdd">包裹入库</MenuItem>
+                      <MenuItem name="ParcelAppoint">预约取件</MenuItem>
                     </Menu>
                 </Sider>
                 <Layout :style="{padding: '0 24px 24px'}">
@@ -26,6 +21,7 @@
     </div>
 </template>
 <script>
+  import Header from './Header'
     export default {
         beforeRouteLeave(to, from, next) {
             const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
@@ -35,36 +31,22 @@
                 next(false)
             }
         },
+      components:{
+          Header
+      },
         methods: {
             MenuSelect(name) {
                 this.$router.push({
                     name: name
                 })
-            },
-            goBack() {
-                this.$router.push({name: 'Welcome'});
             }
+
         }
 
     }
 </script>
 <style scoped>
-    .user-img {
-        margin-right: 8px;
-    }
 
-    .user-div {
-        float: right;
-    }
-
-    .left-btn {
-        float: left;
-        margin-top: 15px;
-    }
-
-    .userName-span {
-        color: white;
-    }
 
     .layout {
         border: 1px solid #d7dde4;
