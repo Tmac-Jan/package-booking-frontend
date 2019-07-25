@@ -1,96 +1,85 @@
 <template>
-<!--    <div class="todoItem">-->
-<!--        <div class="content" id="toDoContent">-->
-<!--            <label><span>{{itemIndex+1}}.</span></label>-->
-            <td>{{orderNumber}}</td>
-            <td>{{customerName}}</td>
-            <td>{{customerPhone}}</td>
-            <td>{{status==0?'未预约':status==1?'已预约':'已完成'}}</td>
-            <td>{{appointTime}}</td>
-            <td>{{weights}}</td>
-<!--            <input type="checkbox" v-model="completed" checked="item.completed?'checked':''"-->
-<!--                   @change="changeStatus"/>-->
-<!--            <label v-show="!editable"-->
-<!--                   @dblclick="startEditTodoItem"-->
-<!--                   :class="completed ? 'finish' : 'notFinish'">{{content}}</label>-->
-<!--            <input type="text" class="editor" v-model="content"-->
-<!--                   v-show="editable"-->
-<!--                   @keyup.enter="editTodoItem"/>-->
-<!--        </div>-->
-
-<!--        <div class="content">-->
-<!--            <Button id="delBtn" @click="deleteItem">delete</Button>-->
-<!--        </div>-->
-<!--    </div>-->
+  <Table border :columns="columns1" :data="this.generateFilterList">
+    <template slot-scope="{ row }" slot="name">
+      <strong>{{ row.name }}</strong>
+    </template>
+    <template slot-scope="{ row, index }" slot="action">
+      <!--      <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">View</Button>-->
+      <Button type="primary" size="small" @click="remove(index)">确认收货</Button>
+    </template>
+  </Table>
 </template>
-
 <script>
-    import {mapActions} from "vuex";
+  import {mapActions} from "vuex";
 
-    export default {
-        props: {
-            item: Object,
-            itemIndex: Number
-        },
-        data() {
-            return {
-           id: this.item.id,
-           orderNumber:this.item.orderNumber,
-           customerName:this.item.customerName,
-           customerPhone:this.item.customerPhone,
-           status:this.item.status,
-           appointTime:this.item.appointTime,
-           weights:this.item.weights
+  export default {
+    data() {
+      return {
+        tabType: 'ALL',
+        columns1: [
+          {
+            title: '运单号',
+            key: 'orderNumber'
+          },
+          {
+            title: '顾客姓名',
+            key: 'customerName'
+          },
+          {
+            title: '顾客电话',
+            key: 'customerPhone'
+          },
+          {
+            title: '状态',
+            key: 'status',
+            render: (h, params) => {
+              if (params.rows.status === 0) {
+                return "未取件";
+              } else if (params.rows.status === 1) {
+                return "已预约";
+              } else if (params.rows.status === 2) {
+                return "已取件";
+              } else {
+                return "无状态";
+              }
             }
-        },
-        methods: {
-            ...mapActions(["updateTodoItem","deleteTodoItem"]),
-            startEditTodoItem() {
-                this.editable = true;
-            },
-            changeStatus() {
-                this.$nextTick(() => {
-                    this.updateTodoItem({
-                        id: this.id,
-                        content: this.content, completed: this.completed
-                        , editable: this.editable
-                    });
-                });
-            },
-            deleteItem(){
-                this.deleteTodoItem(this.id);
-            }
+          },
+          {
+            title: '预约时间',
+            key: 'appointTime'
+          },
+          {
+            title: 'Action',
+            slot: 'action',
+            width: 150,
+            align: 'center'
+          }
+        ],
+        // data1:this.generateFilterList
+      }
+    },
+    created() {
+      this.requestParcelItems();
+    },
+    computed: {
+      generateFilterList() {
+        if (this.tabType === 'ALL') {
+          return this.$store.state.parcelItemList;
         }
-    }
-
+   else if (this.tabType === 'Active') {
+    const a = this.$store.state.parcelItemList.filter((e) =>
+      e.status == 0);
+    return a;
+  } else {
+    const a = this.$store.state.parcelItemList.filter((e) =>
+      e.status == 1);
+    return a;
+  }
+  }
+  },
+  methods:{
+  ...
+    mapActions(["requestParcelItems", "addParcelItem"]),
+  }
+  }
 </script>
-<style scoped>
-
-    .finish {
-        color: goldenrod;
-        text-decoration: line-through
-    }
-    .del-btn-div{
-
-    }
-    .content{
-        position: relative;
-        float: left;
-        width: 50%;
-    }
-    #toDoContent{
-        text-align: left;
-    }
-    #delBtn {
-        display: inline-block;
-        background-color: #fc999b;
-        color: #ffffff;
-        border-radius: 5px;
-        text-align: center;
-        margin-top: 2px;
-        padding: 5px 8px;
-    }
-    .active {
-        border: 1px solid rgb(247, 234, 234);
-    }
-</style>

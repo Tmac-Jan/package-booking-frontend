@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
-import ParcelBossGroup from './components/ParcelBossGroup'
+import ParcelBossItem from './components/ParcelBossItem'
 import Home from './components/Home'
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -18,16 +18,21 @@ const routes = [
     name:"Home",
     children: [
       {
-        path: "/ParcelBossGroup",
-        component: ParcelBossGroup,
-        name:"ParcelBossGroup"
+        path: "",
+        component: ParcelBossItem,
+        name:"ParcelBossItem"
       },
       {
-        path: "/User",
-        component: User,
-        name:"User"
-
-      }
+        path: "/ParcelBossItem",
+        component: ParcelBossItem,
+        name:"ParcelBossItem"
+       }
+      // {
+      //   path: "/User",
+      //   component: User,
+      //   name:"User"
+      //
+      // }
     ]
   }
 ];
